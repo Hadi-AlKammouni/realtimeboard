@@ -7,7 +7,7 @@
 
 ![Demo: two windows syncing in real time](docs/demo.gif)
 
-**Live demo:** _Set after first deploy — see `04_GITHUB_DEPLOYMENT_RUNBOOK` step F._
+**Live demo:** **<https://realtimeboard-cfa4a.web.app>**
 **Open two tabs** to the live URL and you'll see the demo's headline feature: every card move appears instantly in both tabs.
 
 ---
