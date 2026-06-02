@@ -1,0 +1,28 @@
+:host {
+  display: block;
+}
+
+.board {
+  padding: var(--space-5);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.board__columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+@media (max-width: 880px) {
+  .board__columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loading {
+  margin-top: var(--space-5);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}

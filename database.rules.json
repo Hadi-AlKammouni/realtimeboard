@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "boards": {
+      "demoBoard": {
+        ".read": "auth != null",
+        ".write": "auth != null",
+        "cards": {
+          "$cardId": {
+            ".validate": "newData.hasChildren(['title', 'column', 'order', 'label', 'updatedAt'])",
+            "title":       { ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 120" },
+            "description": { ".validate": "newData.isString() && newData.val().length <= 500" },
+            "column":      { ".validate": "newData.val() === 'todo' || newData.val() === 'progress' || newData.val() === 'done'" },
+            "order":       { ".validate": "newData.isNumber()" },
+            "label":       { ".validate": "newData.isString()" },
+            "updatedAt":   { ".validate": "newData.isNumber()" },
+            "createdBy":   { ".validate": "newData.isString()" },
+            "$other":      { ".validate": false }
+          }
+        },
+        "presence": {
+          "$sessionId": {
+            ".validate": "newData.hasChildren(['name', 'color', 'lastSeen']) && auth.uid === $sessionId"
+          }
+        }
+      }
+    }
+  }
+}

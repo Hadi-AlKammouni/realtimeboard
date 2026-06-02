@@ -1,0 +1,28 @@
+<main class="board" data-testid="board">
+  <div class="board__columns" role="region" aria-label="Kanban board">
+    @for (col of columns; track col.id) {
+      <app-column
+        [id]="col.id"
+        [title]="col.title"
+        [cards]="cardsByColumn()[col.id]"
+        [connectedListIds]="connectedListIds()"
+        (addCard)="openAdd($event)"
+        (editCard)="openEdit($event)"
+        (removeCard)="remove($event)"
+      />
+    }
+  </div>
+
+  @if (!ready()) {
+    <div class="loading" role="status" aria-live="polite">Connecting to the live board…</div>
+  }
+</main>
+
+@if (editor(); as state) {
+  <app-card-editor
+    [mode]="state.mode"
+    [initial]="state.initial"
+    (save)="save($event)"
+    (dismiss)="closeEditor()"
+  />
+}

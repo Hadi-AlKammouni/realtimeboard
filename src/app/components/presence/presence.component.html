@@ -1,0 +1,17 @@
+<div class="presence" [attr.aria-label]="users().length + ' user(s) online'">
+  <ul class="presence__list" role="list">
+    @for (u of visible(); track u.id) {
+      <li class="avatar" [style.background]="u.color" [title]="u.name">
+        <span aria-hidden="true">{{ initials(u.name) }}</span>
+        <span class="sr-only">{{ u.name }}</span>
+      </li>
+    }
+    @if (overflow() > 0) {
+      <li class="avatar avatar--more">+{{ overflow() }}</li>
+    }
+  </ul>
+  <span class="presence__label">
+    <span class="dot"></span>
+    {{ users().length }} online
+  </span>
+</div>

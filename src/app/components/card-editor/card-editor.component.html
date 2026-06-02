@@ -1,0 +1,106 @@
+<div
+  class="backdrop"
+  role="dialog"
+  aria-modal="true"
+  [attr.aria-label]="(mode === 'add' ? 'Add' : 'Edit') + ' card'"
+  (click)="onBackdrop($event)"
+  (keydown)="onKeydown($event)"
+>
+  <form class="modal" (submit)="submit($event)">
+    <header class="modal__header">
+      <h2 class="modal__title">{{ mode === 'add' ? 'New card' : 'Edit card' }}</h2>
+      <button type="button" class="icon-btn" aria-label="Close" (click)="dismiss.emit()">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </header>
+
+    <div class="field">
+      <label for="card-title">Title</label>
+      <input
+        #titleInput
+        id="card-title"
+        data-testid="card-title-input"
+        type="text"
+        [ngModel]="title()"
+        (ngModelChange)="title.set($event)"
+        name="title"
+        placeholder="Ship the auth refactor"
+        maxlength="120"
+        autocomplete="off"
+        required
+      />
+    </div>
+
+    <div class="field">
+      <label for="card-desc">Description <span class="optional">(optional)</span></label>
+      <textarea
+        id="card-desc"
+        data-testid="card-desc-input"
+        [ngModel]="description()"
+        (ngModelChange)="description.set($event)"
+        name="description"
+        rows="3"
+        maxlength="500"
+        placeholder="Move /signin to the new Hosted UI and migrate session tokens."
+      ></textarea>
+    </div>
+
+    <div class="row">
+      <div class="field field--grow">
+        <label for="card-column">Column</label>
+        <select
+          id="card-column"
+          [ngModel]="column()"
+          (ngModelChange)="column.set($event)"
+          name="column"
+        >
+          @for (c of columns; track c.id) {
+            <option [value]="c.id">{{ c.title }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Label</label>
+        <div class="swatches" role="radiogroup" aria-label="Card label color">
+          @for (l of labels; track l.value) {
+            <button
+              type="button"
+              role="radio"
+              [attr.aria-checked]="label() === l.value"
+              class="swatch"
+              [class.swatch--selected]="label() === l.value"
+              [style.background]="l.value"
+              [attr.aria-label]="l.name"
+              (click)="label.set(l.value)"
+            ></button>
+          }
+        </div>
+      </div>
+    </div>
+
+    <footer class="modal__footer">
+      <button type="button" class="btn btn--ghost" (click)="dismiss.emit()">Cancel</button>
+      <button
+        type="submit"
+        class="btn btn--primary"
+        data-testid="card-save"
+        [disabled]="!title().trim()"
+      >
+        {{ mode === 'add' ? 'Add card' : 'Save changes' }}
+      </button>
+    </footer>
+  </form>
+</div>

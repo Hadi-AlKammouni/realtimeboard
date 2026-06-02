@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/e2e",
+    "types": ["node"],
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": false,
+    "strict": true,
+    "noPropertyAccessFromIndexSignature": false
+  },
+  "include": ["./**/*.ts", "../playwright.config.ts"]
+}

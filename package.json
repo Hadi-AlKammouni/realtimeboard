@@ -1,0 +1,45 @@
+{
+  "name": "realtimeboard",
+  "version": "1.0.0",
+  "description": "A live collaborative kanban board where every change syncs across users in real time. Angular + Firebase Realtime Database.",
+  "private": true,
+  "license": "MIT",
+  "author": "Hadi Al Kammouni",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "lint": "prettier --check \"src/**/*.{ts,html,scss}\" \"e2e/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.{ts,html,scss,json}\"",
+    "test": "playwright test",
+    "test:unit": "ng test",
+    "e2e:install": "playwright install --with-deps",
+    "deploy": "npm run build && firebase deploy --only hosting"
+  },
+  "packageManager": "npm@10.9.0",
+  "dependencies": {
+    "@angular/animations": "^21.2.0",
+    "@angular/cdk": "^21.2.0",
+    "@angular/common": "^21.2.0",
+    "@angular/compiler": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0",
+    "@angular/platform-browser": "^21.2.0",
+    "@angular/router": "^21.2.0",
+    "firebase": "^10.14.1",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.2.13",
+    "@angular/cli": "^21.2.13",
+    "@angular/compiler-cli": "^21.2.0",
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.0.0",
+    "jsdom": "^28.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
+}
