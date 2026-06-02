@@ -19,7 +19,7 @@
         },
         "presence": {
           "$sessionId": {
-            ".validate": "newData.hasChildren(['name', 'color', 'lastSeen']) && auth.uid === $sessionId"
+            ".validate": "newData.hasChildren(['name', 'color', 'lastSeen'])"
           }
         }
       }

@@ -101,7 +101,7 @@ export class BoardStore {
         this.subscribed = true;
         this.subscribeCards();
         this.subscribeConnected();
-        this.registerPresence(user.uid);
+        this.registerPresence();
       }
     });
 
@@ -162,8 +162,14 @@ export class BoardStore {
     });
   }
 
-  private registerPresence(uid: string): void {
-    const myPresence = child(this.presenceRef, uid);
+  /**
+   * Per-tab session presence. We key by a random session id (not the auth uid)
+   * so two tabs in the same browser show up as two distinct presences — which
+   * is what a viewer expects when they open the live demo in a second tab.
+   */
+  private registerPresence(): void {
+    const sessionId = this.makeSessionId();
+    const myPresence = child(this.presenceRef, sessionId);
     const data: Omit<Presence, 'id'> = {
       name: randomName(),
       color: randomColor(),
@@ -177,6 +183,11 @@ export class BoardStore {
     setInterval(() => {
       update(myPresence, { lastSeen: serverTimestamp() as unknown as number }).catch(() => void 0);
     }, 20_000);
+  }
+
+  private makeSessionId(): string {
+    if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID();
+    return 's-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
   }
 
   private seedAttempted = false;

@@ -3,9 +3,7 @@ import { Card, LABEL_COLORS } from '../models/card.model';
 const blue = LABEL_COLORS[0].value;
 const violet = LABEL_COLORS[1].value;
 const green = LABEL_COLORS[2].value;
-const amber = LABEL_COLORS[3].value;
 const rose = LABEL_COLORS[4].value;
-const cyan = LABEL_COLORS[5].value;
 
 /**
  * Believable demo data so visitors land on a non-empty board.
@@ -13,52 +11,41 @@ const cyan = LABEL_COLORS[5].value;
  */
 export const SEED_CARDS: Omit<Card, 'id' | 'updatedAt'>[] = [
   {
-    title: 'Sketch the new presence avatars',
-    description: 'Aim for 28px circles with -6px overlap. Initials only.',
+    title: 'Triage Stripe webhook retries for failed invoices',
+    description: '4 retries timing out at the auth step since Friday. Pair with payments-on-call.',
     column: 'todo',
+    order: 0,
+    label: rose,
+  },
+  {
+    title: 'Draft Q3 OKRs with engineering leads',
+    description:
+      'Aim for 3 outcome-level objectives; share rough cut by Thursday for the leads sync.',
+    column: 'todo',
+    order: 1,
+    label: violet,
+  },
+  {
+    title: 'Migrate auth provider to WorkOS',
+    description:
+      'Cutover plan reviewed; rolling out behind the `auth_v2` flag to 10% of orgs first.',
+    column: 'progress',
     order: 0,
     label: blue,
   },
   {
-    title: 'Investigate flaky CI on Safari',
-    description: 'Race condition between onAuth and the cards subscription.',
-    column: 'todo',
-    order: 1,
-    label: rose,
-  },
-  {
-    title: 'Move database rules to per-board scope',
-    description: 'Allow anonymous read/write only on demoBoard, not the root.',
-    column: 'todo',
-    order: 2,
-    label: amber,
-  },
-  {
-    title: 'Wire drag-and-drop animations',
-    description: 'CDK lift + scale 1.02. 150ms ease.',
-    column: 'progress',
-    order: 0,
-    label: violet,
-  },
-  {
-    title: 'Add connection-status pill',
-    description: "Reflect onValue('.info/connected') in the top bar.",
+    title: 'Customer call: Lumina enterprise renewal',
+    description:
+      'Renewal at risk over the SSO gap. Bring the WorkOS migration timeline to the call.',
     column: 'progress',
     order: 1,
-    label: cyan,
-  },
-  {
-    title: 'Ship anonymous auth on first load',
-    description: 'No login friction — visitor lands on the live board.',
-    column: 'done',
-    order: 0,
     label: green,
   },
   {
-    title: 'Set the 8px spacing grid',
-    description: 'Token snippet applied across all three projects.',
+    title: 'Ship usage-based billing for the Pro plan',
+    description: 'Released to all Pro accounts on Monday; metering reconciled at midnight UTC.',
     column: 'done',
-    order: 1,
+    order: 0,
     label: blue,
   },
 ];
